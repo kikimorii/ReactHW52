@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const NewTodoItem = ({ setAddedNewTodoItemFlag }) => {
+export const NewTodoItem = ({ setIsChangeList }) => {
     const [newTitle, setNewTitle] = useState("");
 
     const isValid = newTitle.trim().length > 0;
@@ -16,7 +16,7 @@ export const NewTodoItem = ({ setAddedNewTodoItemFlag }) => {
             })
         });
         
-        setAddedNewTodoItemFlag(true);
+        setIsChangeList(true);
         setNewTitle("");
     }
 

@@ -5,21 +5,21 @@ import { TodoList } from './components/TodoList';
 
 export const App = () => {
   const [todoList, setTodoList] = useState([]);
-  const [addedNewTodoItemFlag, setAddedNewTodoItemFlag] = useState(false);
+  const [isChangeList, setIsChangeList] = useState(false);
 
   useEffect(() => {
     fetch('http://localhost:3000/todos')
       .then((response) => response.json())
       .then((todoListResponse) => setTodoList(todoListResponse))
-      .finally(() => setAddedNewTodoItemFlag(false))
-  }, [addedNewTodoItemFlag]);
+      .finally(() => setIsChangeList(false))
+  }, [isChangeList]);
 
   
 
   return (
     <div className={styles.app}>
-      <NewTodoItem setAddedNewTodoItemFlag={setAddedNewTodoItemFlag} />
-      <TodoList todoList={todoList} />
+      <NewTodoItem setIsChangeList={setIsChangeList} />
+      <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
     </div>
   )
 }
