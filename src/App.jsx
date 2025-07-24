@@ -14,13 +14,13 @@ export const App = () => {
       .then((response) => response.json())
       .then((todoListResponse) => setTodoList(todoListResponse))
       .finally(() => setIsChangeList(false))
-  }, [isChangeList]);
+  }, [isChangeList, serverURL]);
 
   
 
   return (
     <div className={styles.app}>
-      <Search serverURL={serverURL} setServerURL={setServerURL} setIsChangeList={setIsChangeList} />
+      <Search serverURL={serverURL} setServerURL={setServerURL} />
       <NewTodoItem setIsChangeList={setIsChangeList} />
       <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
     </div>
