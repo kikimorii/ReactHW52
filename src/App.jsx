@@ -5,7 +5,6 @@ import { TodoList } from './components/TodoList';
 
 export const App = () => {
   const [todoList, setTodoList] = useState([]);
-  const [newTodoItem, setNewtodoItem] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:3000/todos')
