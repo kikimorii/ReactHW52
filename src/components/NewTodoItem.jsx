@@ -1,46 +1,31 @@
 import { useState } from "react"
 
 export const NewTodoItem = ({setAddedNewTodoItemFlag}) => {
-    const [newTodoItemTitle, setNewTodoItemTitle] = useState('');
-    const [isValid, setIsValid] = useState(false);
-    const [isEmpty, setIsEmpty] = useState(true);
+    const [newTitle, setNewTitle] = useState("");
 
-    const onChange = ({ target }) => {
-        if (target.value.length > 0) {
-            setIsValid(true);
-            setIsEmpty(false);
-        } else {
-            setIsValid(false);
-            setIsEmpty(true);
-        }
-        setNewTodoItemTitle(target.value);
-    }
+    const isValid = newTitle.trim().length > 0;
 
-    const handleClickSave = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         fetch('http://localhost:3000/todos', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             body: JSON.stringify({
-                title: newTodoItemTitle,
+                title: newTitle,
                 completed: false,
             })
-        }).finally(() => setAddedNewTodoItemFlag(true));
-    }
-
-    const handleClickReset = (event) => {
-        event.preventDefault();
-        setNewTodoItemTitle("");
-        setIsValid(false);
-        setIsEmpty(true);
+        }).finally(() => {
+            setAddedNewTodoItemFlag(true);
+            setNewTitle("");
+        });
     }
 
     return (
         <li>
-            <form>
-                <input type="text" placeholder="Введите задачу" value={newTodoItemTitle} onChange={onChange} />
-                <button disabled={!isValid} onClick={handleClickSave}>Сохранить</button>
-                {!isEmpty ? <button onClick={handleClickReset}>Сбросить</button> : ""}
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Введите задачу" value={newTitle} onChange={({target}) => setNewTitle(target.value)} />
+                <button type="submit" disabled={!isValid}>Сохранить</button>
+                {isValid ? <button type="button" onClick={() => setNewTitle("")}>Сбросить</button> : ""}
             </form>
         </li>
     )
