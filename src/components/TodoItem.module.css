@@ -1,3 +1,9 @@
+@import url(./NewTodoItem.module.css);
+
+.form {
+    align-items: center;
+}
+
 .compeletedTitle {
     text-decoration: line-through;
 }

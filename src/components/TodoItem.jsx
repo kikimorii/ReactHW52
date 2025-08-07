@@ -31,23 +31,23 @@ export const TodoItem = ({ id, title, completed, setIsChangeList }) => {
 
     return (
         <li key={id}>
-            <form onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={handleSubmit}>
                 <input
                     type="checkbox"
                     checked={itemContent.completed}
                     onChange={handleOnChangeCheckbox}
                 />
                 <input
-                    className={itemContent.completed ? styles.compeletedTitle : ""}
+                    className={`${styles.input} ${itemContent.completed ? styles.compeletedTitle : ""}`}
                     type="text"
                     value={itemContent.title}
                     onChange={handleOnChangeInput}
                 />
                 {isChanged
-                    ? <button type="submit">Сохранить</button>
+                    ? <button className={styles.buttonSave} type="submit">Сохранить</button>
                     : ""
                 }
-                <button onClick={handleClickToDelete} type="button">Удалить</button>
+                <button className={styles.buttonReset} onClick={handleClickToDelete} type="button">Удалить</button>
             </form>
         </li>
     )
