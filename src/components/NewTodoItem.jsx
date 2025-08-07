@@ -1,4 +1,5 @@
 import { useState } from "react"
+import styles from "./NewTodoItem.module.css"
 
 export const NewTodoItem = ({ setIsChangeList }) => {
     const [newTitle, setNewTitle] = useState("");
@@ -22,10 +23,18 @@ export const NewTodoItem = ({ setIsChangeList }) => {
 
     return (
         <li>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Введите задачу" value={newTitle} onChange={({ target }) => setNewTitle(target.value)} />
-                <button type="submit" disabled={!isValid}>Сохранить</button>
-                {isValid ? <button type="button" onClick={() => setNewTitle("")}>Сбросить</button> : ""}
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <input 
+                    className={styles.input}
+                    type="text" 
+                    placeholder="Введите новую задачу" 
+                    value={newTitle} 
+                    onChange={({ target }) => setNewTitle(target.value)} 
+                />
+                <button  className={styles.buttonSave} type="submit"  disabled={!isValid} >
+                    Сохранить
+                </button>
+                {isValid ? <button className={styles.buttonReset} type="button" onClick={() => setNewTitle("")}>Сбросить</button> : ""}
             </form>
         </li>
     )

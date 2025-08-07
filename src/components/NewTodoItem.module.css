@@ -1,0 +1,31 @@
+.form {
+    display: flex;
+    gap: 10px;
+}
+
+.input {
+    flex-grow: 1;
+}
+
+.input:focus, .input:focus-visible {
+    outline: 3px solid var(--danger);
+    outline-offset: -1px;
+}
+
+.input, .buttonReset, .buttonSave{
+    border-radius: 10px;
+    border: none;
+}
+
+.buttonSave {
+    background-color: var(--success);
+}
+
+.buttonSave:disabled {
+    opacity: 0.6;
+    cursor: auto;
+}
+
+.buttonReset {
+    background-color: var(--danger);
+}
