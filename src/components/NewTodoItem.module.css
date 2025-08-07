@@ -8,7 +8,7 @@
 }
 
 .input:focus, .input:focus-visible {
-    outline: 3px solid var(--danger);
+    outline: 3px solid var(--primary);
     outline-offset: -1px;
 }
 

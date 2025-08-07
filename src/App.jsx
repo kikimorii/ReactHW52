@@ -8,12 +8,17 @@ export const App = () => {
   const [todoList, setTodoList] = useState([]);
   const [isChangeList, setIsChangeList] = useState(false);
   const [serverURL, setServerURL] = useState('http://localhost:3000/todos');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(serverURL)
       .then((response) => response.json())
       .then((todoListResponse) => setTodoList(todoListResponse))
-      .finally(() => setIsChangeList(false))
+      .finally(() => {
+        setIsChangeList(false);
+        setIsLoading(false);
+      })
   }, [isChangeList, serverURL]);
 
 
@@ -23,7 +28,12 @@ export const App = () => {
       <Search serverURL={serverURL} setServerURL={setServerURL} />
       <ul>
         <NewTodoItem setIsChangeList={setIsChangeList} />
-        <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
+        {isLoading
+          ? <div className="loaderWrapper">
+              <div className="loader"></div>
+            </div>
+          : <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
+        }
       </ul>
     </div>
   )
