@@ -16,13 +16,15 @@ export const App = () => {
       .finally(() => setIsChangeList(false))
   }, [isChangeList, serverURL]);
 
-  
+
 
   return (
     <div className={styles.app}>
       <Search serverURL={serverURL} setServerURL={setServerURL} />
-      <NewTodoItem setIsChangeList={setIsChangeList} />
-      <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
+      <ul>
+        <NewTodoItem setIsChangeList={setIsChangeList} />
+        <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
+      </ul>
     </div>
   )
 }

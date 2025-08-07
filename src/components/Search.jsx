@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./Search.module.css";
 
 export const Search = ({ serverURL, setServerURL }) => {
     const [searchValue, setSearchValue] = useState('');
@@ -45,22 +46,23 @@ export const Search = ({ serverURL, setServerURL }) => {
     const isValid = searchValue.trim().length > 0;
 
     return (
-        <form onSubmit={handleSearchSubmit}>
+        <form className={styles.form} onSubmit={handleSearchSubmit}>
             <input
+                className={styles.input}
                 type="text"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Текст для поиска"
             />
             {isValid && (
-                <button type="button" onClick={handleResetClick}>
+                <button className={styles.buttonReset} type="button" onClick={handleResetClick}>
                     Сброс
                 </button>
             )}
-            <button type="submit" disabled={!isValid}>
+            <button className={styles.buttonSearch} type="submit" disabled={!isValid}>
                 Поиск
             </button>
-            <button type="button" onClick={handleSortClick}>
+            <button className={styles.buttonSort} type="button" onClick={handleSortClick}>
                 {sortEnabled ? "Отключить сортировку" : "Отсортировать"}
             </button>
         </form>

@@ -1,0 +1,37 @@
+:root {
+    --success: #bbfcba;
+    --danger: #fcbad3;
+    --primary: #a8d8ea;
+    --secondary: #aa96da;
+    --warning: #ffffd2;
+    --info: #96a9da;
+}
+
+body {
+    background-color: #232323;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body * {
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+button, input {
+    padding: 10px 16px;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--success);
+  width: 20px;
+  height: 20px;
+}

@@ -1,0 +1,39 @@
+.form {
+    display: flex;
+    gap: 10px;
+}
+
+.input {
+    flex-grow: 1;
+}
+
+.input:focus, .input:focus-visible {
+    outline: 3px solid var(--danger);
+    outline-offset: -1px;
+}
+
+.input, .buttonReset, .buttonSearch, .buttonSort {
+    border-radius: 10px;
+    border: none;
+}
+
+.buttonReset:hover, .buttonSearch:hover, .buttonSort:hover {
+    cursor: pointer;
+}
+
+.buttonReset {
+    background-color: var(--danger);
+}
+
+.buttonSearch {
+    background-color: var(--success);
+}
+
+.buttonSearch:disabled {
+    opacity: 0.6;
+    cursor: auto;
+}
+
+.buttonSort {
+    background-color: var(--info);
+}
