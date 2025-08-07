@@ -32,7 +32,7 @@ export const App = () => {
           ? <div className="loaderWrapper">
               <div className="loader"></div>
             </div>
-          : <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
+          : <TodoList todoList={todoList} setIsChangeList={setIsChangeList}/>
         }
       </ul>
     </div>
