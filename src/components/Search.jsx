@@ -1,28 +1,13 @@
 import { useState } from "react";
 import styles from "./Search.module.css";
+import { funcBuildURL } from "../utils/utils";
 
 export const Search = ({ serverURL, setServerURL }) => {
     const [searchValue, setSearchValue] = useState('');
     const [sortEnabled, setSortEnabled] = useState(false);
-
+    const isValid = searchValue.trim().length > 0;
     const baseURL = serverURL.split("?")[0];
-
-    const buildURL = (search = '', sort = false) => {
-        const params = new URLSearchParams();
-
-        const trimmed = search.trim();
-        if (trimmed) {
-            params.set("title_like", trimmed);
-        }
-
-        if (sort) {
-            params.set("_sort", "title");
-            params.set("_order", "asc");
-        }
-
-        const queryString = params.toString();
-        return queryString ? `${baseURL}?${queryString}` : baseURL;
-    };
+    const buildURL = funcBuildURL(baseURL);
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
@@ -43,7 +28,6 @@ export const Search = ({ serverURL, setServerURL }) => {
         setServerURL(newURL);
     };
 
-    const isValid = searchValue.trim().length > 0;
 
     return (
         <form className={styles.form} onSubmit={handleSearchSubmit}>

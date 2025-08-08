@@ -1,8 +1,9 @@
 import styles from './App.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NewTodoItem } from './components/NewTodoItem';
 import { TodoList } from './components/TodoList';
 import { Search } from './components/Search';
+import { useGetTodos } from './utils/utils';
 
 export const App = () => {
   const [todoList, setTodoList] = useState([]);
@@ -10,18 +11,7 @@ export const App = () => {
   const [serverURL, setServerURL] = useState('http://localhost:3000/todos');
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(serverURL)
-      .then((response) => response.json())
-      .then((todoListResponse) => setTodoList(todoListResponse))
-      .finally(() => {
-        setIsChangeList(false);
-        setIsLoading(false);
-      })
-  }, [isChangeList, serverURL]);
-
-
+  useGetTodos(serverURL, setIsLoading, setTodoList, setIsChangeList, isChangeList)
 
   return (
     <div className={styles.app}>
@@ -29,10 +19,11 @@ export const App = () => {
       <ul>
         <NewTodoItem setIsChangeList={setIsChangeList} />
         {isLoading
-          ? <div className="loaderWrapper">
-              <div className="loader"></div>
-            </div>
-          : <TodoList todoList={todoList} setIsChangeList={setIsChangeList}/>
+          ?
+          <div className="loaderWrapper">
+            <div className="loader"></div>
+          </div>
+          : <TodoList todoList={todoList} setIsChangeList={setIsChangeList} />
         }
       </ul>
     </div>
