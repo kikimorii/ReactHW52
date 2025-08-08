@@ -17,6 +17,10 @@
     border: none;
 }
 
+.buttonReset:hover, .buttonSave:hover {
+    cursor: pointer;
+}
+
 .buttonSave {
     background-color: var(--success);
 }
